@@ -30,7 +30,7 @@ def main():
     
     ## check download speed
     print('start checking download speed')
-    ip_cnt = min(5, len(sorted_ip))
+    ip_cnt = min(50, len(sorted_ip))
     ip_speed_dict = {}
     for i in range(ip_cnt):
         ip = sorted_ip[i]
