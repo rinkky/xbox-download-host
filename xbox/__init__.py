@@ -15,4 +15,6 @@ def download_speed(ip):
         curl_w='%{speed_download}'
     )
     cmd_out = os.popen(cmd).read()
+    if os.path.exists('nul'):
+        os.remove('nul')
     return round(float(cmd_out)/1024/1024, 2)
