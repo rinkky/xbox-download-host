@@ -1,6 +1,6 @@
 # xbox download host
 
-寻找xbox下载速度最快的hosts
+寻找Xbox最佳hosts, 解决Xbox下载速度慢的问题
 
 ## 所需环境
 
@@ -14,3 +14,5 @@
 - Linux/MacOS: 运行命令`python3 run.py` 或 `./run.sh`
 
 运行之后，最佳hosts保存在`log/hosts.txt`中，速度日志保存在`log/speed.log`中
+
+**如果看不懂上面的，直接从百度网盘下载运行即可，地址：** https://pan.baidu.com/s/1XRZScrlspAgH-weoFlwjZg
