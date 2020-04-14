@@ -12,9 +12,9 @@ def download_speed(ip):
     url = 'http://{}{}'.format(ip, url_postfix)
     headers = {'Host': 'assets1.xboxlive.com', 'range': curl_range}
     dl = 0
+    start = time.clock()
     try:
         rsp = requests.get(url, headers=headers, stream=True, timeout=4)
-        start = time.clock()
         for chunk in rsp.iter_content(1024):
             dl += 1024
             if time.clock() - start > 5:
