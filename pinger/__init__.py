@@ -1,15 +1,33 @@
 import re
 import os
+import sys
 import math
 
-if os.name == 'posix':
+from enum import Enum
+
+class Platform(Enum):
+    LINUX = 0
+    MACOS = 1
+    WINDOWS = 2
+
+if sys.platform == "linux" or sys.platform == "linux2":
+    platform = Platform.LINUX
+    RE_PING_SPEED = re.compile(r'=\s*(\d+\.?\d*)/')
+    PING_CMD = 'ping -c 1 -w {wait} {ip}'
+elif sys.platform == "darwin":
+    platform = Platform.MACOS
     RE_PING_SPEED = re.compile(r'=\s*(\d+\.?\d*)/')
     PING_CMD = 'ping -c 1 -W {wait} {ip}'
-else:
+elif sys.platform == "win32":
+    platform = Platform.WINDOWS
     RE_PING_SPEED = re.compile(r'=(\d+)ms')
     PING_CMD = 'ping /n 1 /w {wait} {ip}'
+else:
+    raise Exception('Unkown OS')
 
 def ping_time(ip, wait=100):
+    if platform == Platform.LINUX:
+        wait = math.ceil(wait / 1000) # seconds
     cmd_out = os.popen(PING_CMD.format(ip=ip, wait=wait)).read()
     match = RE_PING_SPEED.search(cmd_out)
     try:
